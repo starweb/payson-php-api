@@ -27,7 +27,7 @@ if ($detailsResponse->getResponseEnvelope()->wasSuccessful()) {
     // of the transfer
     if ($details->getType() == "TRANSFER" && $details->getStatus() == "COMPLETED") {
         echo "Purchase has been completed <br /><h4>Details</h4><pre>" . $details . "</pre>";
-    } elseif ($details->getType() == "INVOICE" && $details->getStatus() == "PENDING" && $details->getInvoiceStatus() == "ORDERCREATED") {
+    } elseif ($details->getType() == "INVOICE" && $details->getInvoiceStatus() == "ORDERCREATED") {
         echo "Invoice has been created <br /><h4>Details</h4><pre>" . $details . "</pre>";
     } else if ($details->getStatus() == "ERROR") {
         echo "An error occured has occured <br /><h4>Details</h4><pre>" . $details . "</pre>";
