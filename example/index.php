@@ -24,8 +24,8 @@ require_once '../lib/paysonapi.php';
  */
 
 // Your agent ID and md5 key
-$agentID = "1";
-$md5Key = "fddb19ac-7470-42b6-a91d-072cb1495f0a";
+$agentID = "4";
+$md5Key = "2acab30d-fe50-426f-90d7-8c60a7eb31d4";
 
 // URLs used by payson for redirection after a completed/canceled purchase.
 
