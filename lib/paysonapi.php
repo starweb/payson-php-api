@@ -170,10 +170,7 @@ class PaysonApi {
      *
      * @param PaysonCredentials $credentials
      */
-    public function __construct($credentials, $useTestEnvironment = false) {
-        if (get_class($credentials) != "PaysonCredentials") {
-            throw new PaysonApiException("Parameter must be of type PaysonCredentials");
-        }
+    public function __construct(PaysonCredentials $credentials, $useTestEnvironment = false) {
         $this->credentials = $credentials;
 
         $this->useTestEnvironment = $useTestEnvironment;

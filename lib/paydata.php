@@ -54,10 +54,7 @@ class PayData {
         $this->memo = $memo;
     }
 
-    public function setSender($sender) {
-        if (get_class($sender) != "Sender") {
-            throw new PaysonApiException("Object not of type Sender");
-        }
+    public function setSender(Sender $sender) {
 
         $this->sender = $sender;
     }
@@ -67,7 +64,7 @@ class PayData {
             throw new PaysonApiException("Parameter must be an array of Receivers");
 
         foreach ($receivers as $receiver) {
-            if (get_class($receiver) != "Receiver")
+            if(!($receiver instanceof Receiver))
                 throw new PaysonApiException("Parameter must be an array of Receivers");
         }
 
@@ -91,7 +88,7 @@ class PayData {
             throw new PaysonApiException("Parameter must be an array of OrderItems");
 
         foreach ($items as $item) {
-            if (get_class($item) != "OrderItem")
+            if(!($item instanceof OrderItem))
                 throw new PaysonApiException("Parameter must be an array of OrderItems");
         }
 
