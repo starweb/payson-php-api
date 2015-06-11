@@ -1,9 +1,6 @@
 <?php
 
-require_once "responseenvelope.php";
-require_once "orderitem.php";
-require_once "receiver.php";
-require_once "paymentdetails.php";
+namespace Payson;
 
 class PaymentDetailsResponse {
 

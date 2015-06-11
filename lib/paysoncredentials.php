@@ -1,5 +1,7 @@
 <?php
 
+namespace Payson;
+
 /*
  * Container class for credentials used to log in via Payson API.
  */

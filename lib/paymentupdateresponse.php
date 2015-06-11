@@ -1,6 +1,6 @@
 <?php
 
-require_once "responseenvelope.php";
+namespace Payson;
 
 class PaymentUpdateResponse {
 

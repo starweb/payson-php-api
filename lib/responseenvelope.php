@@ -1,5 +1,7 @@
 <?php
 
+namespace Payson;
+
 class ResponseEnvelope {
 
     protected $ack;

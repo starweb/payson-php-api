@@ -1,5 +1,8 @@
 <?php
 
+
+namespace Payson;
+
 /**
  * Represents an order item
  * 

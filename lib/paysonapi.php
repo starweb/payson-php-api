@@ -1,18 +1,6 @@
 <?php
 
-require_once "paysonapiexception.php";
-require_once "paysonapierror.php";
-require_once "paysoncredentials.php";
-require_once "paymentdetailsresponse.php";
-require_once "accountdetailsresponse.php";
-require_once "payresponse.php";
-require_once "paymentupdateresponse.php";
-require_once "validateresponse.php";
-require_once 'nvpcodec.php';
-require_once 'sender.php';
-require_once "paydata.php";
-require_once "paymentdetailsdata.php";
-require_once "paymentupdatedata.php";
+namespace Payson;
 
 class PaymentUpdateMethod {
 
@@ -253,7 +241,7 @@ class PaysonApi {
 
         return new PaymentDetailsResponse($decoded);
     }
-    
+
     /**
      * Gets details about an account
      *
@@ -265,7 +253,7 @@ class PaysonApi {
         $returnData = $this->doRequest($action, $this->credentials, null);
 
         $decoded = NVPCodec::Decode($returnData);
-        
+
         return new AccountDetailsResponse($decoded);
     }
 

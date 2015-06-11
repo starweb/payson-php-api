@@ -1,6 +1,8 @@
 <?php
 
-class PaysonApiException extends Exception {
+namespace Payson;
+
+class PaysonApiException extends \Exception {
 
     public function __construct($message) {
         parent::__construct($message);

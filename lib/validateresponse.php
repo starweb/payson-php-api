@@ -1,6 +1,6 @@
 <?php
 
-require_once "paymentdetails.php";
+namespace Payson;
 
 class ValidateResponse {
 
