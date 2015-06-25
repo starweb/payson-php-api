@@ -42,6 +42,8 @@ class LocaleCode {
     const SWEDISH = "SV";
     const ENGLISH = "EN";
     const FINNISH = "FI";
+    const DANISH = "DK";
+    const NORWEGIAN = "NO";
 
     public static function ConstantToString($value) {
         switch (strtoupper($value)) {
@@ -51,6 +53,10 @@ class LocaleCode {
                 return "FI";
             case "EN":
                 return "EN";
+            case "DK":
+                return "DK";
+            case "NO":
+                return "NO";
             default:
                 throw new PaysonApiException("Invalid constant");
         }
