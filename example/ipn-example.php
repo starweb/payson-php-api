@@ -4,7 +4,8 @@ session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-require '../lib/paysonapi.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // Your agent ID and md5 key
 $agentID = "4";
 $md5Key = "2acab30d-fe50-426f-90d7-8c60a7eb31d4";
@@ -15,8 +16,8 @@ $postData = file_get_contents("php://input");
 file_put_contents("test.txt", $postData);
 
 // Set up API
-$credentials = new PaysonCredentials($agentID, $md5Key);
-$api = new PaysonApi($credentials, TRUE);
+$credentials = new Payson\PaysonCredentials($agentID, $md5Key);
+$api = new Payson\PaysonApi($credentials, TRUE);
 
 // Validate the request
 $response = $api->validate($postData);

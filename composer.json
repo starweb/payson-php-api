@@ -1,5 +1,5 @@
 {
-    "name": "payson/payson-php-api",
+    "name": "payson/api-integration-php",
     "autoload": {
 	    "classmap": ["lib/"]
     }

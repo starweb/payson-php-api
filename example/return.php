@@ -2,7 +2,8 @@
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
-require '../lib/paysonapi.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+
 // Your agent ID and md5 key
 $agentID = "4";
 $md5Key = "2acab30d-fe50-426f-90d7-8c60a7eb31d4";
@@ -11,11 +12,11 @@ $md5Key = "2acab30d-fe50-426f-90d7-8c60a7eb31d4";
 $token = $_GET["TOKEN"];
 
 // Initialize the API in test mode
-$credentials = new PaysonCredentials($agentID, $md5Key);
-$api = new PaysonApi($credentials, TRUE);
+$credentials = new Payson\PaysonCredentials($agentID, $md5Key);
+$api = new Payson\PaysonApi($credentials, TRUE);
 
 // Get the details about this purchase
-$detailsResponse = $api->paymentDetails(new PaymentDetailsData($token));
+$detailsResponse = $api->paymentDetails(new Payson\PaymentDetailsData($token));
 
 // First we verify that the call to payson succeeded.
 if ($detailsResponse->getResponseEnvelope()->wasSuccessful()) {

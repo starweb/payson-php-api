@@ -16,7 +16,7 @@ ini_set("display_errors", 1);
  * from where you installed it.
  */
 
-require_once '../lib/paysonapi.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 /*
  * Account information. Below is all the variables needed to perform a purchase with
@@ -50,8 +50,8 @@ $senderLastname = "Person";
 /* Every interaction with Payson goes through the PaysonApi object which you set up as follows.  
  * For the use of our test or live environment use one following parameters:
  * TRUE: Use test environment, FALSE: use live environment */
-$credentials = new PaysonCredentials($agentID, $md5Key);
-$api = new PaysonApi($credentials, TRUE);
+$credentials = new Payson\PaysonCredentials($agentID, $md5Key);
+$api = new Payson\PaysonApi($credentials, TRUE);
 
 /*
  * To initiate a direct payment the steps are as follows
@@ -67,43 +67,43 @@ $api = new PaysonApi($credentials, TRUE);
 
 
 // Details about the receiver
-$receiver = new Receiver(
+$receiver = new Payson\Receiver(
         $receiverEmail, // The email of the account to receive the money
         $amountToReceive); // The amount you want to charge the user, here in SEK (the default currency)
 $receivers = array($receiver);
 
 // Details about the user that is the sender of the money
-$sender = new Sender($senderEmail, $senderFirstname, $senderLastname);
+$sender = new Payson\Sender($senderEmail, $senderFirstname, $senderLastname);
 
-$payData = new PayData($returnURL, $cancelURL, $ipnURL, "Min fina vara", $sender, $receivers);
+$payData = new Payson\PayData($returnURL, $cancelURL, $ipnURL, "Min fina vara", $sender, $receivers);
 
 //Set the list of products. For direct payment this is optional
 $orderItems = array();
-$orderItems[] = new OrderItem("Test produkt", 100, 1, 0.25, "kalle");
+$orderItems[] = new Payson\OrderItem("Test produkt", 100, 1, 0.25, "kalle");
 
 $payData->setOrderItems($orderItems);
 
 
 //Set the payment method
-//$constraints = array(FundingConstraint::BANK, FundingConstraint::CREDITCARD); // bank and card
-//$constraints = array(FundingConstraint::INVOICE); // only invoice
-//$constraints = array(FundingConstraint::BANK, FundingConstraint::CREDITCARD, FundingConstraint::INVOICE); // bank, card and invoice
-//$constraints = array(FundingConstraint::SMS); // only live environment. 
-$constraints = array(FundingConstraint::BANK); // only bank
+//$constraints = array(Payson\FundingConstraint::BANK, Payson\FundingConstraint::CREDITCARD); // bank and card
+//$constraints = array(Payson\FundingConstraint::INVOICE); // only invoice
+//$constraints = array(Payson\FundingConstraint::BANK, Payson\FundingConstraint::CREDITCARD, Payson\FundingConstraint::INVOICE); // bank, card and invoice
+//$constraints = array(Payson\FundingConstraint::SMS); // only live environment.
+$constraints = array(Payson\FundingConstraint::BANK); // only bank
 $payData->setFundingConstraints($constraints);
 
 //Set the payer of Payson fees
-//Must be PRIMARYRECEIVER if using FundingConstraint::INVOICE
-$payData->setFeesPayer(FeesPayer::PRIMARYRECEIVER);
+//Must be PRIMARYRECEIVER if using Payson\FundingConstraint::INVOICE
+$payData->setFeesPayer(Payson\FeesPayer::PRIMARYRECEIVER);
 
 // Set currency code
-$payData->setCurrencyCode(CurrencyCode::SEK);
+$payData->setCurrencyCode(Payson\CurrencyCode::SEK);
 
 // Set locale code
-$payData->setLocaleCode(LocaleCode::SWEDISH);
+$payData->setLocaleCode(Payson\LocaleCode::SWEDISH);
 
 // Set guarantee options
-$payData->setGuaranteeOffered(GuaranteeOffered::OPTIONAL);
+$payData->setGuaranteeOffered(Payson\GuaranteeOffered::OPTIONAL);
 
 /*
  * Step 2 initiate payment
