@@ -99,8 +99,18 @@ class OrderItem {
         }
 
         while (isset($data[sprintf(self::FORMAT_STRING, $i, "description")])) {
+            $orderItemData = [];
+            foreach (['description', 'unitPrice', 'quantity', 'taxPercentage', 'sku'] as $dataKey) {
+                $orderItemData[$dataKey] = isset($data[sprintf(self::FORMAT_STRING, $i, $dataKey)])
+                    ? $data[sprintf(self::FORMAT_STRING, $i, $dataKey)] : null;
+            }
+
             $items[$i] = new OrderItem(
-                    $data[sprintf(self::FORMAT_STRING, $i, "description")], $data[sprintf(self::FORMAT_STRING, $i, "unitPrice")], $data[sprintf(self::FORMAT_STRING, $i, "quantity")], $data[sprintf(self::FORMAT_STRING, $i, "taxPercentage")], $data[sprintf(self::FORMAT_STRING, $i, "sku")]
+                $orderItemData['description'],
+                $orderItemData['unitPrice'],
+                $orderItemData['quantity'],
+                $orderItemData['taxPercentage'],
+                $orderItemData['sku']
             );
 
             $i++;
