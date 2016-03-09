@@ -4,6 +4,7 @@ require_once "paysonapiexception.php";
 require_once "paysonapierror.php";
 require_once "paysoncredentials.php";
 require_once "paymentdetailsresponse.php";
+require_once "accountdetailsresponse.php";
 require_once "payresponse.php";
 require_once "paymentupdateresponse.php";
 require_once "validateresponse.php";
@@ -172,6 +173,7 @@ class PaysonApi {
     const PAYSON_API_VERSION = "1.0";
     const PAYSON_API_PAY_ACTION = "Pay";
     const PAYSON_API_PAYMENT_DETAILS_ACTION = "PaymentDetails";
+    const PAYSON_API_ACCOUNT_DETAILS_ACTION = "AccountInfo";
     const PAYSON_API_PAYMENT_UPDATE_ACTION = "PaymentUpdate";
     const PAYSON_API_VALIDATE_ACTION = "Validate";
 
@@ -250,6 +252,21 @@ class PaysonApi {
         $decoded = NVPCodec::Decode($returnData);
 
         return new PaymentDetailsResponse($decoded);
+    }
+    
+    /**
+     * Gets details about an account
+     *
+     * @return AccountDetailsResponse object
+     */
+    public function accountDetails() {
+        $action = sprintf("/%s/%s/", self::PAYSON_API_VERSION, self::PAYSON_API_ACCOUNT_DETAILS_ACTION);
+
+        $returnData = $this->doRequest($action, $this->credentials, null);
+
+        $decoded = NVPCodec::Decode($returnData);
+        
+        return new AccountDetailsResponse($decoded);
     }
 
     /**
