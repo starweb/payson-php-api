@@ -1,5 +1,7 @@
 <?php
 
+namespace Payson;
+
 class AccountDetails {
 
     protected $accountEmail;

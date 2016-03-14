@@ -1,7 +1,6 @@
 <?php
 
-require_once "responseenvelope.php";
-require_once "accountdetails.php";
+namespace Payson;
 
 class AccountDetailsResponse {
 
